@@ -1,0 +1,62 @@
+<head>
+    <title>Translators and Installation</title>
+</head>
+
+<body>
+    <h2><strong>Available Translators and Installation</strong></h2>
+    <p>The following is a guide to the installation and setup of the Nim Compiler and a brief overview of some popular
+        third-party translators.</p>
+    <h2>1.0 Nim Compiler (nimc)</h2>
+    <p>The Nim Compiler is the official compiler for the Nim programming language. It translates Nim code into C, C++,
+        or Objective-C, which is then compiled into an executable binary. Here's how to install and set up the Nim
+        Compiler:</p>
+    <h2>1.1 Download and Install Nim</h2>
+    <p>You can download the Nim programming language from the official website (<a
+            href="https://nim-lang.org/install.html" target="_blank"
+            rel="noopener">https://nim-lang.org/install.html</a>). Choose the appropriate package for your operating
+        system (Windows, macOS, or Linux). Follow the installation instructions provided on the website. Next, install
+        the <span style="color: #188038;">nimc </span>package via your terminal or command prompt using the following
+        command:</p>
+    <p><span style="color: #188038;">nimble install nimc</span></p>
+    <p>This will install the <span style="color: #188038;">nimc </span>package and all its dependencies.</p>
+    <h2>2.0 c2nim</h2>
+    <p>(<a href="https://github.com/nim-lang/c2nim" target="_blank"
+            rel="noopener">https://github.com/nim-lang/c2nim</a>) is a command-line tool that parses C code and
+        generates equivalent Nim code. Keep in mind that c2nim may not be able to translate all C constructs to Nim, and
+        some manual adjustments might be necessary after the translation.</p>
+    <p>Here's how to install and use c2nim:</p>
+    <ol>
+        <li>Install c2nim using the Nimble package manager:</li>
+    </ol>
+    <p><span style="color: #188038;">nimble install c2nim</span></p>
+    <ol start="2">
+        <li>To translate a C header file (e.g., <span style="color: #188038;">example.h</span>) to a Nim file, run:</li>
+    </ol>
+    <p><span style="color: #188038;">c2nim example.h</span></p>
+    <p>By default, c2nim will generate a Nim file with the same name as the input file but with a <span
+            style="color: #188038;">.nim</span> extension (e.g., <span style="color: #188038;">example.nim</span>). You
+        can also specify the output file name using the <span style="color: #188038;">-o</span> or <span
+            style="color: #188038;">--output</span> option:</p>
+    <p><span style="color: #188038;">c2nim -o output.nim example.h</span></p>
+    <h2>3.0 NimLUA</h2>
+    <p>NimLUA (<a href="https://github.com/arnetheduck/nimlua" target="_blank"
+            rel="noopener">https://github.com/arnetheduck/nimlua</a>) is a transpiler that allows you to write Nim code
+        and generate Lua code. Lua is a lightweight scripting language often used for embedding in applications,
+        especially in the game development industry. To use NimLUA, follow these steps:</p>
+    <ol>
+        <li>Install NimLUA using the Nimble package manager:</li>
+    </ol>
+    <p><span style="color: #188038;">nimble install nimlua</span></p>
+    <ol start="2">
+        <li>Write a Nim file (e.g., <span style="color: #188038;">example.nim</span>) with the Nim code you want to
+            translate to Lua:</li>
+    </ol>
+    <p><span style="color: #188038;">import nimlua</span></p>
+    <p><span style="color: #188038;">echo "Hello, Lua!"</span></p>
+    <ol start="3">
+        <li>To translate the Nim file to Lua code, run:</li>
+    </ol>
+    <p><span style="color: #188038;">nim lua example.nim</span></p>
+    <p>This will generate an <span style="color: #188038;">example.lua</span> file containing the translated Lua code.
+    </p>
+</body>
