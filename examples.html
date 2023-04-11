@@ -38,162 +38,158 @@
     <div class="container bg-dark-subtle">
         <code>
             <pre>
-                #Compile instructions
-                #[nim compile --run helloworld.nim
-                shortened compile command
-                nim c -r helloworld.nim
-                ]#
-                echo "Hello world"
+#Compile instructions
+#[nim compile --run helloworld.nim
+shortened compile command
+nim c -r helloworld.nim
+]#
+echo "Hello world"
             </pre>
         </code>
-<<<<<<< HEAD
         
     </div> 
-    <div class="example-output">
-        <p style="text-align:center;"></p><img src="HelloWorldOutput.png" alt="pig latin output one"></p>
+    <div class="container">
+        <figure class="figure"><img src="HelloWorldOutput.png" class="figure-img" alt="pig latin output one"></figure>
     </div>  
     <div class="container bg-dark-subtle">
         <code>
             <pre>
-                #Compile instructions
-                #[nim compile --run OddEven.nim
-                shortened compile command
-                nim c -r OddEven.nim
-                ]#
-                import strutils
-                echo "Type a number below"
+#Compile instructions
+#[nim compile --run OddEven.nim
+shortened compile command
+nim c -r OddEven.nim
+]#
+import strutils
+echo "Type a number below"
 
-                var number: int = parseInt(readLine(stdin))
+var number: int = parseInt(readLine(stdin))
 
-                if number mod 2 == 0:
-                echo "This number is even"
-                else:
-                echo "This number is odd"
+if number mod 2 == 0:
+echo "This number is even"
+else:
+echo "This number is odd"
             </pre>
         </code>
     </div> 
-    <div class="example-output">
-        <p style="text-align:center;"></p><img src="OddEvenv1.png" alt="pig latin output one"></p>
-        <img src="OddEvenv2.png" alt="pig latin output two">
+    <div class="container">
+        <figure class="figure"><img src="OddEvenv1.png" class="figure-img" alt="pig latin output one"><br/>
+        <img src="OddEvenv2.png" class="figure-img" alt="pig latin output two"></figure>
     </div> 
     <div class="container bg-dark-subtle">
         <code>
             <pre>
-                #Compile instructions
-                #[nim compile --run PigLatin.nim
-                shortened compile command
-                nim c -r PigLatin.nim
-                ]#
-                echo "Type any word you would like translated into Pig Latin"
+#Compile instructions
+#[nim compile --run PigLatin.nim
+shortened compile command
+nim c -r PigLatin.nim
+]#
+echo "Type any word you would like translated into Pig Latin"
 
-                var word = readLine(stdin)
+var word = readLine(stdin)
 
-                echo word[1..^1], word[0], "a"
+echo word[1..^1], word[0], "a"
             </pre>
         </code>
     </div> 
-    <div class="example-output">
-        <p style="text-align:center;"></p><img src="PigLatinOutputv1.png" alt="pig latin output one"></p>
-        <img src="PigLatinOutputv2.png" alt="pig latin output two">
+    <div class="container">
+        <figure class="figure"><img src="PigLatinOutputv1.png" class="figure-img" alt="pig latin output one"><br/>
+        <img src="PigLatinOutputv2.png" class="figure-img" alt="pig latin output two"></figure>
     </div> 
     <div class="container bg-dark-subtle">
         <code>
             <pre>
-                #Compile instructions
-                #[nim compile --run PriceIsRight.nim
-                shortened compile command
-                nim c -r PriceIsRight.nim
-                ]#
-                import strutils
-                echo "Welcome to the Price is Right!"
-                echo "Guess the price of a Lazy Boy recliner"
+#Compile instructions
+#[nim compile --run PriceIsRight.nim
+shortened compile command
+nim c -r PriceIsRight.nim
+]#
+import strutils
+echo "Welcome to the Price is Right!"
+echo "Guess the price of a Lazy Boy recliner"
 
-                var bids: array[0..3, int]
+var bids: array[0..3, int]
 
-                for i in 0 .. 3:
-                bids[i] = parseInt(readLine(stdin))
+for i in 0 .. 3:
+bids[i] = parseInt(readLine(stdin))
 
-                proc priceIsRight(x: varargs[int], tar: int): int =
-                var win: int
-                for i in low(x) .. high(x):
-                    if x[i] <= tar :
-                    win = x[i]
-                return win
+proc priceIsRight(x: varargs[int], tar: int): int =
+var win: int
+for i in low(x) .. high(x):
+    if x[i] <= tar :
+    win = x[i]
+return win
 
-                var win = priceIsRight(bids, 449)
+var win = priceIsRight(bids, 449)
 
-                if win == 0:
-                echo "All guesses went over, try again."
-                else:
-                echo "The contestant with the bid of ", win, " got the closest to 449!"
+if win == 0:
+echo "All guesses went over, try again."
+else:
+echo "The contestant with the bid of ", win, " got the closest to 449!"
             </pre>
         </code>
     </div> 
-    <div class="example-output">
-        <p style="text-align:center;"></p><img src="Price is right output v1.png" alt="pig latin output one"></p>
-        <img src="Price is right output v2.png" alt="pig latin output two">
+    <div class="container">
+        <figure class="figure"><img src="Price is right output v1.png" class="figure-img" alt="pig latin output one"><br/>
+        <img src="Price is right output v2.png" class="figure-img" alt="pig latin output two"></figure>
     </div> 
     <div class="container bg-dark-subtle">
         <code>
             <pre>
-                #Compile instructions
-                #[nim compile --run Books.nim
-                shortened compile command
-                nim c -r Books.nim
-                ]#
+#Compile instructions
+#[nim compile --run Books.nim
+shortened compile command
+nim c -r Books.nim
+]#
 
-                type
-                Book = object
-                    title, genre, author: string
-                    pageNum: int
+type
+Book = object
+    title, genre, author: string
+    pageNum: int
 
-                var book1 = Book(title: "Cinder", genre: "sci-fi", author: "Myers", pageNum: 350)
-                var book2 = Book(title: "Michael Vey", genre: "sci-fi", author: "Evans", pageNum: 235)
-                var book3 = Book(title: "Harry Potter", genre: "fantasy", author: "Rowling", pageNum: 217)
-                var book4 = Book(title: "Six of Crows", genre: "mystery", author: "Bardugo", pageNum: 421)
-
-
-                var library: seq[Book]
-
-                library.add(book1)
-                library.add(book2)
-                library.add(book3)
-                library.add(book4)
+var book1 = Book(title: "Cinder", genre: "sci-fi", author: "Myers", pageNum: 350)
+var book2 = Book(title: "Michael Vey", genre: "sci-fi", author: "Evans", pageNum: 235)
+var book3 = Book(title: "Harry Potter", genre: "fantasy", author: "Rowling", pageNum: 217)
+var book4 = Book(title: "Six of Crows", genre: "mystery", author: "Bardugo", pageNum: 421)
 
 
-                echo "My library:"
+var library: seq[Book]
 
-                for i in low(library)..high(library):
-                echo library[i].title, " - by ", library[i].author
+library.add(book1)
+library.add(book2)
+library.add(book3)
+library.add(book4)
 
-                echo ""
 
-                echo "Pages read:"
-                var pages: int = 0
-                for i in low(library)..high(library):
-                pages = pages + library[i].pageNum
-                echo pages
+echo "My library:"
 
-                echo ""
+for i in low(library)..high(library):
+echo library[i].title, " - by ", library[i].author
 
-                #echo "Genre's in library:"
-                var favGen: seq[string]
-                favGen.add(library[0].genre)
-                for i in (low(library)+1)..high(library):
-                if library[i-1].genre != library[i].genre:
-                    favGen.add(library[i].genre)
+echo ""
 
-                for i in low(favGen)..high(favGen):
-                echo favGen[i]
+echo "Pages read:"
+var pages: int = 0
+for i in low(library)..high(library):
+pages = pages + library[i].pageNum
+echo pages
+
+echo ""
+
+#echo "Genre's in library:"
+var favGen: seq[string]
+favGen.add(library[0].genre)
+for i in (low(library)+1)..high(library):
+if library[i-1].genre != library[i].genre:
+    favGen.add(library[i].genre)
+
+for i in low(favGen)..high(favGen):
+echo favGen[i]
             </pre>
         </code>
     </div>  
-    <div class="example-output">
-        <p style="text-align:center;"></p><img src="BooksOutput.png" alt="pig latin output one"></p>
+    <div class="container">
+        <figure class="figure"><img src="BooksOutput.png" class="figure-img" alt="pig latin output one"></p></figure>
     </div>  
-=======
-    </div>
->>>>>>> 7531190e5bc7dda091379a3745d74cc85f5072e9
 </body>
 
 </html>
