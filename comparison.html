@@ -11,7 +11,9 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Nim</a>
+            <a class="navbar-brand" href="index.html">
+                <img class="border border-3 border-primary" src="robin.png" alt="Bootstrap" width="50" height="50"> Nim
+            </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -33,55 +35,68 @@
             </div>
         </div>
     </nav>
-    <table class="table table-striped table-bordered table-sm">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Nim</th>
-                <th scope="col">C</th>
-                <th scope="col">Java</th>
-                <th scope="col">Python</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Variables</th>
-                <td>var x: int = 1<br/>var y = 2<br/>var z: int
-                </td>
-                <td>int x = 1;</td>
-                <td>int x = 1;</td>
-                <td>x = 1</td>
-            </tr>
-            <tr>
-                <th scope="row">Arrays</th>
-                <td>var x: array[0..5, int]<br/>var y = [1,2,5]</td>
-                <td>int x[6];<br/>int y[] = {1,2,5};</td>
-                <td>int[] x = new int[6];<br/>int[] y = {1,2,5}</td>
-                <td>x = []<br/>y = [1,2,5]</td>
-            </tr>
-            <tr>
-                <th scope="row">Pointers</th>
-                <td>var x = 4<br/>var y = addr(x)<br/>var z = y[]</td>
-                <td>int x = 4;<br/> int *y = &x;<br/>int z = *y;</td>
-                <td>---</td>
-                <td>---</td>
-            </tr>
-            <tr>
-                <th scope="row">if then else</th>
-                <td>if cond():<br/>&emsp;x = 1<br/>else:<br/>&emsp;x = 2</td>
-                <td>if (cond()){<br/>&emsp;x = 1;<br/>} else{<br/>&emsp;x = 2;<br/>}</td>
-                <td>if (cond()){<br/>&emsp;x = 1;<br/>} else{<br/>&emsp;x = 2;<br/>}</td>
-                <td>if cond():<br/>&emsp;x = 1<br/>else:<br/>&emsp;x = 2</td>
-            </tr>
-            <tr>
-                <th scope="row">for loop</th>
-                <td>for i in 0..<10:<br/>&emsp;doStuff()</td>
-                <td>for (int i = 0; i < 10; i++){<br/>&emsp;doStuff()<br/>}</td>
-                <td>for (int i = 0; i < 10; i++){<br/>&emsp;doStuff()<br/>}</td>
-                <td>for i in range(0,10):<br/>&emsp;doStuff()</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <h3>Syntax comparison between languages</h3>
+        <table class="table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nim</th>
+                    <th scope="col">C</th>
+                    <th scope="col">Java</th>
+                    <th scope="col">Python</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Variables</th>
+                    <td>var x: int = 1<br />var y = 2<br />var z: int
+                    </td>
+                    <td>int x = 1;</td>
+                    <td>int x = 1;</td>
+                    <td>x = 1</td>
+                </tr>
+                <tr>
+                    <th scope="row">Arrays</th>
+                    <td>var x: array[0..5, int]<br />var y = [1,2,5]</td>
+                    <td>int x[6];<br />int y[] = {1,2,5};</td>
+                    <td>int[] x = new int[6];<br />int[] y = {1,2,5}</td>
+                    <td>x = []<br />y = [1,2,5]</td>
+                </tr>
+                <tr>
+                    <th scope="row">Pointers</th>
+                    <td>var x = 4<br />var y = addr(x)<br />var z = y[]</td>
+                    <td>int x = 4;<br /> int *y = &x;<br />int z = *y;</td>
+                    <td>---</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <th scope="row">if then else</th>
+                    <td>if cond():<br />&emsp;x = 1<br />else:<br />&emsp;x = 2</td>
+                    <td>if (cond()){<br />&emsp;x = 1;<br />} else{<br />&emsp;x = 2;<br />}</td>
+                    <td>if (cond()){<br />&emsp;x = 1;<br />} else{<br />&emsp;x = 2;<br />}</td>
+                    <td>if cond():<br />&emsp;x = 1<br />else:<br />&emsp;x = 2</td>
+                </tr>
+                <tr>
+                    <th scope="row">for loop</th>
+                    <td>for i in 0..
+                        <10:<br />&emsp;doStuff()
+                    </td>
+                    <td>for (int i = 0; i
+                        < 10; i++){<br />&emsp;doStuff()<br />}
+                    </td>
+                    <td>for (int i = 0; i
+                        < 10; i++){<br />&emsp;doStuff()<br />}
+                    </td>
+                    <td>for i in range(0,10):<br />&emsp;doStuff()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <p>Additional comparisons to various languages can be found </p>
+    <a href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers">here</a>
+    <p>.</p>
 </body>
 
 </html>
