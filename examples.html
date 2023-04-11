@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Bootstrap Example</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Nim</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="installation.html">Translators/Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparison.html">Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="examples.html">Examples</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container bg-dark-subtle">
+        <code>
+            <pre>
+#Compile instructions
+#[nim compile --run PriceIsRight.nim
+shortened compile command
+nim c -r PriceIsRight.nim
+]#
+echo "Welcome to the Price is Right!"
+echo "Guess the price of a Lazy Boy recliner"
+
+var bids: array[0..3, string]
+
+for i in 0 .. 3:
+bids[i] = readLine(stdin)
+
+proc priceIsRight(x: varargs[string], tar: string): string =
+var win: string
+for i in low(x) .. high(x):
+    if x[i] <= tar :
+    win = x[i]
+return win
+
+var win = priceIsRight(bids, "449")
+
+if win == "":
+echo "All guesses went over, try again."
+else:
+echo "The contestant with the bid of ", win, " got the closest to 345!"
+            </pre>
+        </code>
+    </div>  
+</body>
+
+</html>
