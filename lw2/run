@@ -1,0 +1,10 @@
+#!/bin/bash
+FILE=$1
+if [[ ! $1 == *.nim ]]; then
+    FILE=$FILE.nim
+fi
+if [[ $# -eq 2 && $2 == "d" ]]; then
+    nim r $FILE
+else
+    nim r -d:release --hints:off $FILE 
+fi

@@ -1,0 +1,25 @@
+Type of unit to convert (help for options): ...
+From (help for options): ...
+To (help for options): ...
+Quantity: ...
+result
+
+Type of unit to convert (help for options): help
+area length temperature volume mass speed time
+Type of unit to convert (help for options): length
+From (help for options): help
+mm cm m km in ft yd mi
+From (help for options): km
+To (help for options): mi
+Quantity: 50
+50km = 31.06mi
+
+Type of unit to convert (help for options): mass
+From (help for options): ton
+invalid unit
+From (help for options): help
+mg g kg oz lb
+From (help for options): lb
+To (help for options): kg
+Quantity: 2000
+2000lb = 907.18kg
