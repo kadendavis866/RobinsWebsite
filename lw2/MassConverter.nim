@@ -16,7 +16,7 @@ proc convertToMG(startUnit: Unit, value: var float) =
 proc convertToG(startUnit: Unit, value: var float) =
     case startUnit
     of mg:
-        value = value * .001
+        value = value * 0.001
     of g:
         discard
     of kg:
@@ -29,22 +29,22 @@ proc convertToG(startUnit: Unit, value: var float) =
 proc convertToKG(startUnit: Unit, value: var float) =
     case startUnit
     of mg:
-        value = value * .000001
+        value = value * 0.000001
     of g:
-        value = value * .001
+        value = value * 0.001
     of kg:
         discard
     of oz:
-        value = value * .0283495
+        value = value * 0.0283495
     of lb:
-        value = value * .453592
+        value = value * 0.453592
 
 proc convertToOZ(startUnit: Unit, value: var float) =
     case startUnit
     of mg:
-        value = value * .000035274
+        value = value * 0.000035274
     of g:
-        value = value * .035274
+        value = value * 0.035274
     of kg:
         value = value * 35.274
     of oz:
@@ -55,26 +55,26 @@ proc convertToOZ(startUnit: Unit, value: var float) =
 proc convertToLB(startUnit: Unit, value: var float) =
     case startUnit
     of mg:
-        value = value * .00000220462
+        value = value * 0.00000220462
     of g:
-        value = value * .00220462
+        value = value * 0.00220462
     of kg:
         value = value * 2.20462
     of oz:
-        value = value * .0625
+        value = value * 0.0625
     of lb:
         discard
 
 proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
     var retVal = value 
-    if(endUnit = Unit.mg):
-        convertToMG(startUnit,value)
-    if(endUnit = Unit.g):
-        convertToG(startUnit,value)
-    if(endUnit = Unit.kg):
-        convertToKG(startUnit,value)
-    if(endUnit = Unit.oz):
-        convertToOZ(startUnit,value)
-    if(endUnit = Unit.lb):
-        convertToLB(startUnit,value)
+    if(endUnit == Unit.mg):
+        convertToMG(startUnit,retval)
+    if(endUnit == Unit.g):
+        convertToG(startUnit,retval)
+    if(endUnit == Unit.kg):
+        convertToKG(startUnit,retval)
+    if(endUnit == Unit.oz):
+        convertToOZ(startUnit,retval)
+    if(endUnit == Unit.lb):
+        convertToLB(startUnit,retval)
     return retVal

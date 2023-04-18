@@ -137,7 +137,7 @@ proc convertMass() =
         except ValueError:
             echo "invalid value"
             valid = false
-    echo $(value) & $(startUnit) & " = " & $(length.convert(startUnit, endUnit, value)) & $(endUnit)
+    echo $(value) & $(startUnit) & " = " & $(mass.convert(startUnit, endUnit, value)) & $(endUnit)
 
 
 
