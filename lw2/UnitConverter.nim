@@ -4,6 +4,7 @@ from LengConverter as length import nil
 from MassConverter as mass import nil
 from areaConverter as area import nil
 from volConverter as volume import nil
+from TimeConverter as time import nil
 
 proc convertTemp() =
     var startUnit: temp.Unit
@@ -233,6 +234,52 @@ proc convertVolume() =
     echo $(value) & $(startUnit) & " = " & $(volume.convert(startUnit, endUnit, value)) & $(endUnit)
 
 
+proc convertTime() =
+    var startUnit: time.Unit
+    var endUnit: time.Unit
+    var value: float
+    var usrInput: string
+    var valid = false
+    while (not valid):
+        valid = true
+        stdout.write "From (help for options): "
+        usrInput = readline(stdin)
+        if (usrInput == "help"):
+            echo "second minute hour day week month year"
+            valid = false
+        else:
+            try:
+                startUnit = parseEnum[time.Unit](usrInput)
+            except ValueError:
+                echo "invalid unit"
+                valid = false
+    valid = false
+    while (not valid):
+        valid = true
+        stdout.write "To (help for options): "
+        usrInput = readline(stdin)
+        if (usrInput == "help"):
+            echo "second minute hour day week month year"
+            valid = false
+        else:
+            try:
+                endUnit = parseEnum[time.Unit](usrInput)
+            except ValueError:
+                echo "invalid unit"
+                valid = false
+    valid = false
+    while (not valid):
+        valid = true
+        stdout.write "Value: "
+        usrInput = readline(stdin)
+        try:
+            value = parseFloat(usrInput)
+        except ValueError:
+            echo "invalid value"
+            valid = false
+    echo $(value) & $(startUnit) & " = " & $(time.convert(startUnit, endUnit, value)) & $(endUnit)
+
+
 
 const unitTypes: array[6, string] = ["area", "length", "temperature", "volume", "mass", "time"]
 
@@ -253,10 +300,11 @@ while (not valid):
     elif (usrInput == unitTypes[4]):
         convertMass()
     elif (usrInput == unitTypes[5]):
-        echo "time conversion not implemented yet"
+        convertTime()
     elif (usrInput == "help"):
         echo "area length temperature volume mass time"
         valid = false
     else:
-        echo "TODO print error message"
+        echo "Invalid conversion types."
+        echo "These are your options: area length temperature volume mass time"
         valid = false
