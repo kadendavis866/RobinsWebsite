@@ -3,6 +3,7 @@ from TempConverter as temp import nil
 from LengConverter as length import nil
 from MassConverter as mass import nil
 from areaConverter as area import nil
+from volConverter as volume import nil
 
 proc convertTemp() =
     var startUnit: temp.Unit
@@ -186,6 +187,52 @@ proc convertArea() =
     echo $(value) & $(startUnit) & " = " & $(area.convert(startUnit, endUnit, value)) & $(endUnit)
 
 
+proc convertVolume() =
+    var startUnit: volume.Unit
+    var endUnit: volume.Unit
+    var value: float
+    var usrInput: string
+    var valid = false
+    while (not valid):
+        valid = true
+        stdout.write "From (help for options): "
+        usrInput = readline(stdin)
+        if (usrInput == "help"):
+            echo "L gal m3"
+            valid = false
+        else:
+            try:
+                startUnit = parseEnum[volume.Unit](usrInput)
+            except ValueError:
+                echo "invalid unit"
+                valid = false
+    valid = false
+    while (not valid):
+        valid = true
+        stdout.write "To (help for options): "
+        usrInput = readline(stdin)
+        if (usrInput == "help"):
+            echo "L gal m3"
+            valid = false
+        else:
+            try:
+                endUnit = parseEnum[volume.Unit](usrInput)
+            except ValueError:
+                echo "invalid unit"
+                valid = false
+    valid = false
+    while (not valid):
+        valid = true
+        stdout.write "Value: "
+        usrInput = readline(stdin)
+        try:
+            value = parseFloat(usrInput)
+        except ValueError:
+            echo "invalid value"
+            valid = false
+    echo $(value) & $(startUnit) & " = " & $(volume.convert(startUnit, endUnit, value)) & $(endUnit)
+
+
 
 const unitTypes: array[6, string] = ["area", "length", "temperature", "volume", "mass", "time"]
 
@@ -202,7 +249,7 @@ while (not valid):
     elif (usrInput == unitTypes[2]):
         convertTemp()
     elif (usrInput == unitTypes[3]):
-        echo "volume conversion not implemented yet"
+        convertVolume()
     elif (usrInput == unitTypes[4]):
         convertMass()
     elif (usrInput == unitTypes[5]):
