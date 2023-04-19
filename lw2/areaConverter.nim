@@ -1,79 +1,173 @@
-import strutils
+type Unit* = enum mm2 cm2 m2 km2 inch2 ft2 yd2 mi2
 
-proc toSquareMeters(value: float, unit: string): float =
-    case unit:
-    of "m2", "sqm":
-        return value
-    of "ft2", "sqft":
-        return value * 0.092903
-    of "km2", "sqkm":
-        return value * 1_000_000.0
-    of "mi2", "sqmi":
-        return value * 2_589_988.11
-    else:
-        raise newException(ValueError, "Invalid input unit")
+proc convertToMM(startUnit: Unit, value: var float) =
+  case startUnit
+  of mm2:
+      discard
+  of cm2:
+      value = value * 10
+  of m2:
+      value = value * 1000
+  of km2:
+      value = value * 1000000
+  of inch2:
+      value = value * 25.4
+  of ft2:
+      value = value * 304.8
+  of yd2:
+      value = value * 914.4
+  of mi2:
+      value = value * 1609340
 
-proc fromSquareMeters(value: float, unit: string): float =
-    case unit:
-    of "m2", "sqm":
-        return value
-    of "ft2", "sqft":
-        return value / 0.092903
-    of "km2", "sqkm":
-        return value / 1_000_000.0
-    of "mi2", "sqmi":
-        return value / 2_589_988.11
-    else:
-        raise newException(ValueError, "Invalid output unit")
+proc convertToCM(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.1
+    of cm2:
+        discard
+    of m2:
+        value = value * 100
+    of km2:
+        value = value * 100000
+    of inch2:
+        value = value * 2.54
+    of ft2:
+        value = value * 30.48
+    of yd2:
+        value = value * 91.44
+    of mi2:
+        value = value * 160934
 
-echo("Welcome to the area conversion tool! Please select the conversion you want to perform:")
-echo("1. Square meters (m2/sqm) to square feet (ft2/sqft)")
-echo("2. Square feet (ft2/sqft) to square meters (m2/sqm)")
-echo("3. Square kilometers (km2/sqkm) to square miles (mi2/sqmi)")
-echo("4. Square miles (mi2/sqmi) to square kilometers (km2/sqkm)")
+proc convertToM(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.001
+    of cm2:
+        value = value * 0.1
+    of m2:
+        discard
+    of km2:
+        value = value * 1000
+    of inch2:
+        value = value * 0.0254
+    of ft2:
+        value = value * 0.3048
+    of yd2:
+        value = value * 0.9144
+    of mi2:
+        value = value * 1609.34
 
-var conversionOption: string
-var inputValue: float
-var inputUnit: string
-var outputUnit: string
-var validInput: bool = false
+proc convertToKM(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value / 1000000
+    of cm2:
+        value = value / 100000
+    of m2:
+        value = value * 0.01
+    of km2:
+        discard
+    of inch2:
+        value = value * 0.0000254
+    of ft2:
+        value = value * 0.0003048
+    of yd2:
+        value = value * 0.0009144
+    of mi2:
+        value = value * 1.60934
 
-while not validInput:
-    conversionOption = readLine(stdin)
-    case conversionOption
-    of "1":
-        echo("You have selected Square meters (m2/sqm) to square feet (ft2/sqft)")
-        echo("Please enter the area value you want to convert (in square meters):")
-        inputUnit = "m2"
-        outputUnit = "ft2"
-        validInput = true
-    of "2":
-        echo("You have selected Square feet (ft2/sqft) to square meters (m2/sqm)")
-        echo("Please enter the area value you want to convert (in square feet):")
-        inputUnit = "ft2"
-        outputUnit = "m2"
-        validInput = true
-    of "3":
-        echo("You have selected Square kilometers (km2/sqkm) to square miles (mi2/sqmi)")
-        echo("Please enter the area value you want to convert (in square kilometers):")
-        inputUnit = "km2"
-        outputUnit = "mi2"
-        validInput = true
-    of "4":
-        echo("You have selected Square miles (mi2/sqmi) to square kilometers (km2/sqkm)")
-        echo("Please enter the area value you want to convert (in square miles):")
-        inputUnit = "mi2"
-        outputUnit = "km2"
-        validInput = true
-    else:
-        echo("Invalid option. Please select a valid option.")
-        validInput = false
+proc convertToIN(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.0393701
+    of cm2:
+        value = value * 0.393701
+    of m2:
+        value = value * 39.3701
+    of km2:
+        value = value * 39370.1
+    of inch2:
+        discard
+    of ft2:
+        value = value * 12
+    of yd2:
+        value = value * 36
+    of mi2:
+        value = value * 63360
 
-inputValue = parseFloat(readLine(stdin))
+proc convertToFT(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.00328084
+    of cm2:
+        value = value * 0.0328084
+    of m2:
+        value = value * 3.28084
+    of km2:
+        value = value * 3280.84
+    of inch2:
+        value = value / 12
+    of ft2:
+        discard
+    of yd2:
+        value = value * 3
+    of mi2:
+        value = value * 5280
 
-try:
-    let areaInSquareMeters = toSquareMeters(inputValue, inputUnit)
-    let convertedArea = fromSquareMeters(areaInSquareMeters, outputUnit)
-    echo(inputValue, " ", inputUnit, " = ", convertedArea, " ", outputUnit)
-except ValueError:
-    echo("Invalid unit. Please enter a valid unit.")
+proc convertToYD(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.00109361
+    of cm2:
+        value = value * 0.0109361
+    of m2:
+        value = value * 1.09361
+    of km2:
+        value = value * 1093.61
+    of inch2:
+        value = value * 0.027778
+    of ft2:
+        value = value / 3
+    of yd2:
+        discard
+    of mi2:
+        value = value * 1760
+
+proc convertToMI(startUnit: Unit, value: var float) =
+    case startUnit
+    of mm2:
+        value = value * 0.000000621371
+    of cm2:
+        value = value * 0.00000621371
+    of m2:
+        value = value * 0.000621371
+    of km2:
+        value = value * 0.621371
+    of inch2:
+        value = value * 0.0000157828
+    of ft2:
+        value = value * 0.000189394
+    of yd2:
+        value = value * 0.000568182
+    of mi2:
+        discard
+
+proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+    var retVal = value 
+    if(endUnit == Unit.mm2):
+        convertToMM(startUnit,retVal)
+    if(endUnit == Unit.cm2):
+        convertToCM(startUnit,retval)
+    if(endUnit == Unit.m2):
+        convertToM(startUnit,retval)
+    if(endUnit == Unit.km2):
+        convertToKM(startUnit,retval)
+    if(endUnit == Unit.inch2):
+        convertToIN(startUnit,retval)
+    if(endUnit == Unit.ft2):
+        convertToFT(startUnit,retval)
+    if(endUnit == Unit.yd2):
+        convertToYD(startUnit,retval)
+    if(endUnit == Unit.mi2):
+        convertToMI(startUnit,retval)
+    return retVal
