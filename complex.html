@@ -1,0 +1,1040 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Nim-robins</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img class="border border-3 border-primary" src="robin.png" alt="Bootstrap" width="50" height="50"> Nim
+            </a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="installation.html">Translators/Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.html">Documentation</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="comparison.html">Comparison</a>
+                    </li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="examples.html">Examples</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="complex.html">Complex</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<body>
+    <div class="container bg-dark-subtle">
+        <code>
+            <pre>
+                #Area Converter
+                type Unit* = enum mm2 cm2 m2 km2 inch2 ft2 yd2 mi2
+
+                proc convertToMM(startUnit: Unit, value: var float) =
+                  case startUnit
+                  of mm2:
+                      discard
+                  of cm2:
+                      value = value * 10
+                  of m2:
+                      value = value * 1000
+                  of km2:
+                      value = value * 1000000
+                  of inch2:
+                      value = value * 25.4
+                  of ft2:
+                      value = value * 304.8
+                  of yd2:
+                      value = value * 914.4
+                  of mi2:
+                      value = value * 1609340
+                
+                proc convertToCM(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.1
+                    of cm2:
+                        discard
+                    of m2:
+                        value = value * 100
+                    of km2:
+                        value = value * 100000
+                    of inch2:
+                        value = value * 2.54
+                    of ft2:
+                        value = value * 30.48
+                    of yd2:
+                        value = value * 91.44
+                    of mi2:
+                        value = value * 160934
+                
+                proc convertToM(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.001
+                    of cm2:
+                        value = value * 0.1
+                    of m2:
+                        discard
+                    of km2:
+                        value = value * 1000
+                    of inch2:
+                        value = value * 0.0254
+                    of ft2:
+                        value = value * 0.3048
+                    of yd2:
+                        value = value * 0.9144
+                    of mi2:
+                        value = value * 1609.34
+                
+                proc convertToKM(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value / 1000000
+                    of cm2:
+                        value = value / 100000
+                    of m2:
+                        value = value * 0.01
+                    of km2:
+                        discard
+                    of inch2:
+                        value = value * 0.0000254
+                    of ft2:
+                        value = value * 0.0003048
+                    of yd2:
+                        value = value * 0.0009144
+                    of mi2:
+                        value = value * 1.60934
+                
+                proc convertToIN(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.0393701
+                    of cm2:
+                        value = value * 0.393701
+                    of m2:
+                        value = value * 39.3701
+                    of km2:
+                        value = value * 39370.1
+                    of inch2:
+                        discard
+                    of ft2:
+                        value = value * 12
+                    of yd2:
+                        value = value * 36
+                    of mi2:
+                        value = value * 63360
+                
+                proc convertToFT(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.00328084
+                    of cm2:
+                        value = value * 0.0328084
+                    of m2:
+                        value = value * 3.28084
+                    of km2:
+                        value = value * 3280.84
+                    of inch2:
+                        value = value / 12
+                    of ft2:
+                        discard
+                    of yd2:
+                        value = value * 3
+                    of mi2:
+                        value = value * 5280
+                
+                proc convertToYD(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.00109361
+                    of cm2:
+                        value = value * 0.0109361
+                    of m2:
+                        value = value * 1.09361
+                    of km2:
+                        value = value * 1093.61
+                    of inch2:
+                        value = value * 0.027778
+                    of ft2:
+                        value = value / 3
+                    of yd2:
+                        discard
+                    of mi2:
+                        value = value * 1760
+                
+                proc convertToMI(startUnit: Unit, value: var float) =
+                    case startUnit
+                    of mm2:
+                        value = value * 0.000000621371
+                    of cm2:
+                        value = value * 0.00000621371
+                    of m2:
+                        value = value * 0.000621371
+                    of km2:
+                        value = value * 0.621371
+                    of inch2:
+                        value = value * 0.0000157828
+                    of ft2:
+                        value = value * 0.000189394
+                    of yd2:
+                        value = value * 0.000568182
+                    of mi2:
+                        discard
+                
+                proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+                    var retVal = value 
+                    if(endUnit == Unit.mm2):
+                        convertToMM(startUnit,retVal)
+                    if(endUnit == Unit.cm2):
+                        convertToCM(startUnit,retval)
+                    if(endUnit == Unit.m2):
+                        convertToM(startUnit,retval)
+                    if(endUnit == Unit.km2):
+                        convertToKM(startUnit,retval)
+                    if(endUnit == Unit.inch2):
+                        convertToIN(startUnit,retval)
+                    if(endUnit == Unit.ft2):
+                        convertToFT(startUnit,retval)
+                    if(endUnit == Unit.yd2):
+                        convertToYD(startUnit,retval)
+                    if(endUnit == Unit.mi2):
+                        convertToMI(startUnit,retval)
+                    return retVal
+                
+            </pre>
+        </code>
+
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Length Converter
+                    type Unit* = enum mm cm m km inch ft yd mi
+
+                    proc convertToMM(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            discard
+                        of cm:
+                            value = value * 10
+                        of m:
+                            value = value * 1000
+                        of km:
+                            value = value * 1000000
+                        of inch:
+                            value = value * 25.4
+                        of ft:
+                            value = value * 304.8
+                        of yd:
+                            value = value * 914.4
+                        of mi:
+                            value = value * 1609340
+                    
+                    proc convertToCM(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.1
+                        of cm:
+                            discard
+                        of m:
+                            value = value * 100
+                        of km:
+                            value = value * 100000
+                        of inch:
+                            value = value * 2.54
+                        of ft:
+                            value = value * 30.48
+                        of yd:
+                            value = value * 91.44
+                        of mi:
+                            value = value * 160934
+                    
+                    proc convertToM(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.001
+                        of cm:
+                            value = value * 0.1
+                        of m:
+                            discard
+                        of km:
+                            value = value * 1000
+                        of inch:
+                            value = value * 0.0254
+                        of ft:
+                            value = value * 0.3048
+                        of yd:
+                            value = value * 0.9144
+                        of mi:
+                            value = value * 1609.34
+                    
+                    proc convertToKM(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value / 1000000
+                        of cm:
+                            value = value / 100000
+                        of m:
+                            value = value * 0.01
+                        of km:
+                            discard
+                        of inch:
+                            value = value * 0.0000254
+                        of ft:
+                            value = value * 0.0003048
+                        of yd:
+                            value = value * 0.0009144
+                        of mi:
+                            value = value * 1.60934
+                    
+                    proc convertToIN(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.0393701
+                        of cm:
+                            value = value * 0.393701
+                        of m:
+                            value = value * 39.3701
+                        of km:
+                            value = value * 39370.1
+                        of inch:
+                            discard
+                        of ft:
+                            value = value * 12
+                        of yd:
+                            value = value * 36
+                        of mi:
+                            value = value * 63360
+                    
+                    proc convertToFT(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.00328084
+                        of cm:
+                            value = value * 0.0328084
+                        of m:
+                            value = value * 3.28084
+                        of km:
+                            value = value * 3280.84
+                        of inch:
+                            value = value / 12
+                        of ft:
+                            discard
+                        of yd:
+                            value = value * 3
+                        of mi:
+                            value = value * 5280
+                    
+                    proc convertToYD(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.00109361
+                        of cm:
+                            value = value * 0.0109361
+                        of m:
+                            value = value * 1.09361
+                        of km:
+                            value = value * 1093.61
+                        of inch:
+                            value = value * 0.027778
+                        of ft:
+                            value = value / 3
+                        of yd:
+                            discard
+                        of mi:
+                            value = value * 1760
+                    
+                    proc convertToMI(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mm:
+                            value = value * 0.000000621371
+                        of cm:
+                            value = value * 0.00000621371
+                        of m:
+                            value = value * 0.000621371
+                        of km:
+                            value = value * 0.621371
+                        of inch:
+                            value = value * 0.0000157828
+                        of ft:
+                            value = value * 0.000189394
+                        of yd:
+                            value = value * 0.000568182
+                        of mi:
+                            discard
+                    
+                    proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+                        var retVal = value 
+                        if(endUnit == Unit.mm):
+                            convertToMM(startUnit,retVal)
+                        if(endUnit == Unit.cm):
+                            convertToCM(startUnit,retval)
+                        if(endUnit == Unit.m):
+                            convertToM(startUnit,retval)
+                        if(endUnit == Unit.km):
+                            convertToKM(startUnit,retval)
+                        if(endUnit == Unit.inch):
+                            convertToIN(startUnit,retval)
+                        if(endUnit == Unit.ft):
+                            convertToFT(startUnit,retval)
+                        if(endUnit == Unit.yd):
+                            convertToYD(startUnit,retval)
+                        if(endUnit == Unit.mi):
+                            convertToMI(startUnit,retval)
+                        return retVal
+                    
+                </pre>
+            </code>
+            
+        </div> 
+
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Temperature Converter
+                    type Unit* = enum C F K
+
+                    proc convertToC(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of C:
+                            discard
+                        of F:
+                            value = (value - 32) * 5 / 9
+                        of K:
+                            value -= 273.15
+                    
+                    proc convertFromC(value: var float, endUnit: Unit) =
+                        case endUnit
+                        of C:
+                            discard
+                        of F:
+                            value = value * 9 / 5 + 32
+                        of K:
+                            value += 273.15
+                    
+                    proc convert*(startUnit: Unit, endUnit: Unit, value: float): float =
+                        var retVal = value
+                        convertToC(startUnit, retVal)
+                        convertFromC(retVal, endUnit)
+                        return retVal
+                </pre>
+            </code>
+            
+        </div> 
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Volume Converter
+                    type Unit* = enum L gal m3
+
+                    proc convertToL(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of L:
+                            discard
+                        of gal:
+                            value = value * 3.78541
+                        of m3:
+                            value = value * 1000
+                    
+                    proc convertToGAL(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of L:
+                            value = value / 3.78541
+                        of gal:
+                            discard
+                        of m3:
+                            value = value * 264.172
+                    
+                    proc convertToM3(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of L:
+                            value = value / 1000
+                        of gal:
+                            value = value / 264.172
+                        of m3:
+                            discard
+                    
+                    proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+                        var retVal = value 
+                        if(endUnit == Unit.L):
+                            convertToL(startUnit,retVal)
+                        if(endUnit == Unit.gal):
+                            convertToGAL(startUnit,retval)
+                        if(endUnit == Unit.m3):
+                            convertToM3(startUnit,retval)
+                        return retVal
+                </pre>
+            </code>
+            
+        </div> 
+
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Mass Converter
+                    type Unit* = enum mg g kg oz lb 
+
+                    proc convertToMG(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mg:
+                            discard
+                        of g:
+                            value = value * 1000
+                        of kg:
+                            value = value * 1000000
+                        of oz:
+                            value = value * 28349.5
+                        of lb:
+                            value = value * 453592
+                    
+                    proc convertToG(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mg:
+                            value = value * 0.001
+                        of g:
+                            discard
+                        of kg:
+                            value = value * 1000
+                        of oz:
+                            value = value * 28.3495
+                        of lb:
+                            value = value * 453.592
+                    
+                    proc convertToKG(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mg:
+                            value = value * 0.000001
+                        of g:
+                            value = value * 0.001
+                        of kg:
+                            discard
+                        of oz:
+                            value = value * 0.0283495
+                        of lb:
+                            value = value * 0.453592
+                    
+                    proc convertToOZ(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mg:
+                            value = value * 0.000035274
+                        of g:
+                            value = value * 0.035274
+                        of kg:
+                            value = value * 35.274
+                        of oz:
+                            discard
+                        of lb:
+                            value = value * 453592
+                    
+                    proc convertToLB(startUnit: Unit, value: var float) =
+                        case startUnit
+                        of mg:
+                            value = value * 0.00000220462
+                        of g:
+                            value = value * 0.00220462
+                        of kg:
+                            value = value * 2.20462
+                        of oz:
+                            value = value * 0.0625
+                        of lb:
+                            discard
+                    
+                    proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+                        var retVal = value 
+                        if(endUnit == Unit.mg):
+                            convertToMG(startUnit,retval)
+                        if(endUnit == Unit.g):
+                            convertToG(startUnit,retval)
+                        if(endUnit == Unit.kg):
+                            convertToKG(startUnit,retval)
+                        if(endUnit == Unit.oz):
+                            convertToOZ(startUnit,retval)
+                        if(endUnit == Unit.lb):
+                            convertToLB(startUnit,retval)
+                        return retVal
+                </pre>
+            </code>
+            
+        </div> 
+
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Time Converter
+                    type Unit* = enum second minute hour day week month year
+
+                    proc convertToSEC(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          discard
+                      of minute:
+                          value = value * 60
+                      of hour:
+                          value = value * 3600
+                      of day:
+                          value = value * 86400
+                      of week:
+                          value = value * 604800
+                      of month:
+                          value = value * 2629746
+                      of year:
+                          value = value * 31556952
+                    
+                    proc convertToMIN(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 60
+                      of minute:
+                          discard
+                      of hour:
+                          value = value * 60
+                      of day:
+                          value = value * 1440
+                      of week:
+                          value = value * 10080
+                      of month:
+                          value = value * 43800
+                      of year:
+                          value = value * 525600
+                    
+                    proc convertToHOUR(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 3600
+                      of minute:
+                          value = value / 60
+                      of hour:
+                          discard
+                      of day:
+                          value = value * 24
+                      of week:
+                          value = value * 168
+                      of month:
+                          value = value * 730.001
+                      of year:
+                          value = value * 8760
+                    
+                    proc convertToDAY(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 86400
+                      of minute:
+                          value = value / 1440
+                      of hour:
+                          value = value / 24
+                      of day:
+                          discard
+                      of week:
+                          value = value * 7
+                      of month:
+                          value = value * 30.4167
+                      of year:
+                          value = value * 365
+                    
+                    proc convertToWEEK(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 604800
+                      of minute:
+                          value = value / 10080
+                      of hour:
+                          value = value / 168
+                      of day:
+                          value = value / 7
+                      of week:
+                          discard
+                      of month:
+                          value = value * 4.34524
+                      of year:
+                          value = value * 52.1429
+                    
+                    proc convertToMONTH(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 2629746
+                      of minute:
+                          value = value / 43800
+                      of hour:
+                          value = value / 730
+                      of day:
+                          value = value / 30.417
+                      of week:
+                          value = value / 4.34524
+                      of month:
+                          discard
+                      of year:
+                          value = value * 12
+                    
+                    proc convertToYEAR(startUnit: Unit, value: var float) =
+                      case startUnit
+                      of second:
+                          value = value / 31556952
+                      of minute:
+                          value = value / 525600
+                      of hour:
+                          value = value / 8760
+                      of day:
+                          value = value / 365
+                      of week:
+                          value = value / 52.143
+                      of month:
+                          value = value / 12
+                      of year:
+                          discard
+                    
+                    proc convert*(startUnit: Unit, endUnit: Unit, value: float): float = 
+                        var retVal = value 
+                        if(endUnit == Unit.second):
+                            convertToSEC(startUnit,retVal)
+                        if(endUnit == Unit.minute):
+                            convertToMIN(startUnit,retval)
+                        if(endUnit == Unit.hour):
+                            convertToHOUR(startUnit,retval)
+                        if(endUnit == Unit.day):
+                            convertToDAY(startUnit,retval)
+                        if(endUnit == Unit.week):
+                            convertToWEEK(startUnit,retval)
+                        if(endUnit == Unit.month):
+                            convertToMONTH(startUnit,retval)
+                        if(endUnit == Unit.year):
+                            convertToYEAR(startUnit,retval)
+                        return retVal
+                </pre>
+            </code>
+            
+        </div> 
+
+        <div class="container bg-dark-subtle">
+            <code>
+                <pre>
+                    #Unit Converter
+                    import strutils
+                    from TempConverter as temp import nil
+                    from LengConverter as length import nil
+                    from MassConverter as mass import nil
+                    from areaConverter as area import nil
+                    from volConverter as volume import nil
+                    from TimeConverter as time import nil
+                    
+                    proc convertTemp() =
+                        var startUnit: temp.Unit
+                        var endUnit: temp.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "C F K"
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[temp.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "C F K"
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[temp.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(temp.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    
+                    proc convertLength() =
+                        var startUnit: length.Unit
+                        var endUnit: length.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mm cm m km inch ft yd mi"
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[length.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mm cm m km inch ft yd mi"
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[length.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(length.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    proc convertMass() =
+                        var startUnit: mass.Unit
+                        var endUnit: mass.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mg g kg oz lb "
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[mass.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mg g kg oz lb "
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[mass.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(mass.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    proc convertArea() =
+                        var startUnit: area.Unit
+                        var endUnit: area.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mm2 cm2 m2 km2 inch2 ft2 yd2 mi2"
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[area.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "mm2 cm2 m2 km2 inch2 ft2 yd2 mi2"
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[area.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(area.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    
+                    proc convertVolume() =
+                        var startUnit: volume.Unit
+                        var endUnit: volume.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "L gal m3"
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[volume.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "L gal m3"
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[volume.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(volume.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    
+                    proc convertTime() =
+                        var startUnit: time.Unit
+                        var endUnit: time.Unit
+                        var value: float
+                        var usrInput: string
+                        var valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "From (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "second minute hour day week month year"
+                                valid = false
+                            else:
+                                try:
+                                    startUnit = parseEnum[time.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "To (help for options): "
+                            usrInput = readline(stdin)
+                            if (usrInput == "help"):
+                                echo "second minute hour day week month year"
+                                valid = false
+                            else:
+                                try:
+                                    endUnit = parseEnum[time.Unit](usrInput)
+                                except ValueError:
+                                    echo "invalid unit"
+                                    valid = false
+                        valid = false
+                        while (not valid):
+                            valid = true
+                            stdout.write "Value: "
+                            usrInput = readline(stdin)
+                            try:
+                                value = parseFloat(usrInput)
+                            except ValueError:
+                                echo "invalid value"
+                                valid = false
+                        echo $(value) & $(startUnit) & " = " & $(time.convert(startUnit, endUnit, value)) & $(endUnit)
+                    
+                    
+                    
+                    const unitTypes: array[6, string] = ["area", "length", "temperature", "volume", "mass", "time"]
+                    
+                    var usrInput: string
+                    var valid = false
+                    while (not valid):
+                        valid = true
+                        stdout.write "Type of unit to convert (help for options): "
+                        usrInput = readLine(stdin)
+                        if (usrInput == unitTypes[0]):
+                            convertArea()
+                        elif (usrInput == unitTypes[1]):
+                            convertLength()
+                        elif (usrInput == unitTypes[2]):
+                            convertTemp()
+                        elif (usrInput == unitTypes[3]):
+                            convertVolume()
+                        elif (usrInput == unitTypes[4]):
+                            convertMass()
+                        elif (usrInput == unitTypes[5]):
+                            convertTime()
+                        elif (usrInput == "help"):
+                            echo "area length temperature volume mass time"
+                            valid = false
+                        else:
+                            echo "Invalid conversion types."
+                            echo "These are your options: area length temperature volume mass time"
+                            valid = false
+                </pre>
+            </code>
+            
+        </div> 
+        
+    </div> 
+</body>
